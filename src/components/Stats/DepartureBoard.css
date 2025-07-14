@@ -1,0 +1,166 @@
+/* Theme Variables */
+:root {
+    /* Light Theme (Default) */
+    --board-bg: #fffaf3;
+    --board-text: #011111;
+    --letter-shadow-1: rgba(200, 200, 200, 0.7);
+    --letter-shadow-2: rgba(255, 255, 255, 0.7);
+    --letter-shadow-3: rgba(226, 207, 191, 0.7); /*corner box shadows*/
+    --letter-highlight: rgba(0, 0, 0, 0.1);
+    --letter-border-top: rgba(255, 255, 255, 0.4);
+    --letter-border-bottom: rgba(0, 0, 0, 0.08);
+    --flap-border: #e2cfbf;
+    --flap-bg: #fff;
+    
+    /* Font Variables - Archivo Narrow Default */
+    --board-font: "Archivo Narrow", sans-serif;
+    --board-font-weight: 400;
+    --board-font-style: normal;
+}
+
+/* Font Options */
+[data-font="justus"] {
+    --board-font: "justus-pro", serif;
+    --board-font-weight: 300;
+    --board-font-style: normal;
+}
+
+[data-font="roboto-slab"] {
+    --board-font: "Roboto Slab", serif;
+    --board-font-weight: 300;
+    --board-font-style: normal;
+}
+
+[data-font="archivo"] {
+    --board-font: "Archivo Narrow", sans-serif;
+    --board-font-weight: 400;
+    --board-font-style: normal;
+}
+
+[data-font="inter"] {
+    --board-font: "Inter", sans-serif;
+    --board-font-weight: 300;
+    --board-font-style: normal;
+}
+
+/* Forest Theme */
+[data-theme="forest"] {
+    --board-bg: #011111;
+    --board-text: #eee;
+    --letter-shadow-1: rgba(4, 46, 48, 0.7);
+    --letter-shadow-2: rgba(1, 17, 17, 0.7);
+    --letter-shadow-3: rgba(1, 17, 17, 0.9);
+    --letter-highlight: rgba(255, 255, 255, 0.2);
+    --letter-border-top: rgba(0, 0, 0, 0.4);
+    --letter-border-bottom: rgba(255, 255, 255, 0.08);
+    --flap-border: #042E30;
+    --flap-bg: #011111;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --board-bg: rgb(30, 30, 30);
+    --board-text: #eee;
+    --letter-shadow-1: rgba(50, 50, 50, 0.7);
+    --letter-shadow-2: rgba(0, 0, 0, 0.7);
+    --letter-shadow-3: rgba(0, 0, 0, 0.9);
+    --letter-highlight: rgba(255, 255, 255, 0.2);
+    --letter-border-top: rgba(0, 0, 0, 0.4);
+    --letter-border-bottom: rgba(255, 255, 255, 0.08);
+    --flap-border: #444;
+    --flap-bg: #000;
+}
+
+.departure-board {
+    padding: 0.36em;
+    display: inline-block;
+    line-height: 1.3em;
+    background: var(--board-bg);
+    border-radius: 0.21em;
+    color: var(--board-text);
+    font-family: var(--board-font);
+    font-weight: var(--board-font-weight);
+    font-style: var(--board-font-style);
+}
+
+.departure-board .row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0.2em;
+}
+
+.departure-board .letter {
+    display: inline-block;
+    width: 1em;
+    margin: 0 0.1em;
+    height: 1.3em;
+    text-align: center;
+    position: relative;
+    box-shadow:
+        inset 0 -0.07em 0 var(--letter-shadow-1),
+        inset 0 -0.14em 0 var(--letter-shadow-2),
+        inset 0.14em 0 0.28em var(--letter-shadow-3),
+        inset -0.14em 0 0.28em var(--letter-shadow-3),
+        0 0.07em 0 var(--letter-highlight);
+}
+
+.departure-board .letter::before {
+    content: " ";
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 0;
+    left: 0;
+    top: 0.62em;
+    z-index: 2;
+    border-top: 0.07em solid var(--letter-border-top);
+    border-bottom: 0.07em solid var(--letter-border-bottom);
+    transform: translate(0, -0.05em);
+}
+
+.departure-board .fold {
+    display: block;
+    position: absolute;
+    height: 0;
+    top: 0.65em;
+}
+
+.departure-board .flap {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 1em;
+    height: 0.65em;
+    margin: 0;
+    overflow: hidden;
+}
+
+.departure-board .text {
+    width: 100%;
+}
+
+.departure-board .bottom {
+    top: 0.65em;
+}
+
+.departure-board .bottom .text {
+    position: relative;
+    top: -0.65em;
+}
+
+.departure-board .flap.falling {
+    display: none;
+    bottom: 0;
+    top: auto;
+}
+
+.departure-board .flap.falling .text {
+    backface-visibility: hidden;
+    border-top: 0.03em solid var(--flap-border);
+    border-bottom: 0.03em solid var(--flap-border);
+    background: var(--flap-bg);
+    display: block;
+    position: relative;
+    transform: scaleY(1);
+    transition: transform linear;
+}
