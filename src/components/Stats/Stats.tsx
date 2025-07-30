@@ -13,7 +13,7 @@ const StatsSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
 `;
 
 const Title = styled.h2`
@@ -59,10 +59,10 @@ const DepartureBoardContainer = styled.div`
 `;
 
 const METRICS = [
-  { label: 'ALL-TIME BOOKINGS', value: '1,234,567' },
-  { label: 'GROSS BOOKING VALUE', value: '$956,142,314' },
+  { label: 'ALL-TIME BOOKINGS', value: '19,540,203' },
+  { label: 'GROSS BOOKING VALUE', value: '$6,793,979,363' },
   { label: 'TOTAL MILES TRAVELED', value: '763,140,987' },
-  { label: 'TOTAL HAPPY TRAVELERS', value: '125,000+' },
+  { label: 'TOTAL HAPPY TRAVELERS', value: '+19,000,000' },
 ];
 
 const Stats: React.FC = () => {

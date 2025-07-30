@@ -34,21 +34,6 @@ const Overlay = styled.div`
   z-index: 2;
 `;
 
-const Logo = styled.img`
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  height: 60px;
-  width: auto;
-  z-index: 3;
-  
-  @media (max-width: 768px) {
-    height: 40px;
-    top: 1rem;
-    left: 1rem;
-  }
-`;
-
 const Content = styled.div`
   position: relative;
   z-index: 3;
@@ -84,13 +69,14 @@ const ContentRectangle = styled.div`
   bottom: 2rem;
   left: 2rem;
   width: 500px;
-  height: 250px;
+  height: auto;
+  min-height: 250px;
   background-color: #042E30;
-  opacity: 0.7;
+  opacity: 0.8;
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   z-index: 3;
   border-radius: 8px;
   
@@ -121,7 +107,7 @@ const ContentText = styled.p`
   font-size: 1rem;
   line-height: 1.6;
   color: white;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem; 
   text-align: left;
   font-weight: 400;
   
@@ -148,7 +134,7 @@ const AboutButton = styled.a`
   cursor: pointer;
   align-self: flex-start;
   border-radius: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 0;
   
   &:hover {
     background: white;
@@ -174,7 +160,6 @@ const Hero: React.FC = () => {
     <HeroSection>
       <BackgroundImage />
       <Overlay />
-      <Logo src="/assets/logos/TPG_Beach_hero.png" alt="TPG Logo" />
       <Content>
         
       </Content>
@@ -182,7 +167,7 @@ const Hero: React.FC = () => {
         <div>
           <ContentHeading>Where Travel Opens Doors</ContentHeading>
           <ContentText>
-            Our belief that travel can open new doors and enrich lives drives everything we build. With four innovative platforms, Travelpass Group brings people closer to the moments that matter most to create a more interconnected and understanding world.
+            Our belief that travel can open new doors and enrich lives drives everything we build. With four purpose-built platforms, Travelpass Group brings people closer to the moments that matter most to create a more interconnected and understanding world.
           </ContentText>
         </div>
         <AboutButton onClick={scrollToStory}>

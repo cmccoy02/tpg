@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Timeline from '../Timeline';
 
 const StorySection = styled.section`
   position: relative;
@@ -78,6 +79,12 @@ const TextSection = styled.p`
   }
 `;
 
+const TimelineWrapper = styled.div`
+  margin-top: 15rem;
+  display: flex;
+  justify-content: center;
+`;
+
 const Story: React.FC = () => {
   return (
     <StorySection id="story">
@@ -93,6 +100,9 @@ const Story: React.FC = () => {
             With a bold, global vision for the future, we're reimagining the role technology plays in travel, focused on a faster, smarter, and more personal experience for every trip.
           </TextSection>
         </StoryText>
+        <TimelineWrapper>
+          <Timeline />
+        </TimelineWrapper>
       </Content>
     </StorySection>
   );

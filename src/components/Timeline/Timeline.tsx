@@ -35,10 +35,10 @@ const TimelineContainer = styled.div`
   width: 100%;
   max-width: 800px;
 `;
-
+//Line connecting the dots - needs to be adjusted to go through center of dots
 const TimelineLine = styled.div`
   position: absolute;
-  top: 12.5px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: 535px; /* 7 gaps * 60px + 6 dots * 25px (excluding the first and last dot centers) */
@@ -55,15 +55,18 @@ const DotsContainer = styled.div`
   max-width: 560px; /* 7 gaps * 60px + 8 dots * 25px */
   margin-bottom: 2rem;
 `;
-
+//needs to be centered and adjusted to be above the dots
 const YearLabel = styled.div`
   position: absolute;
   top: -40px;
+  left: 50%;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 1rem;
   font-weight: 400;
   color: #FFFAF3;
   transform: translateX(-50%);
+  white-space: nowrap; // Prevents text wrapping
+  text-align: center;
 `;
 
 const Dot = styled.button<{ isActive: boolean }>`
@@ -81,75 +84,81 @@ const Dot = styled.button<{ isActive: boolean }>`
     transform: scale(1.2);
   }
 `;
-
+//Card that pops up when a dot is clicked
 const CardContainer = styled.div<{ isVisible: boolean }>`
   position: absolute;
-  top: 80px;
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 175px;
-  height: 100px;
+  width: 200px;
+  height: 150px;
   background-color: #FFFAF3;
   color: #011111;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 1rem;
   font-size: 0.9rem;
   line-height: 1.4;
   text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   opacity: ${props => props.isVisible ? 1 : 0};
   visibility: ${props => props.isVisible ? 'visible' : 'hidden'};
   transition: all 0.3s ease;
   z-index: 3;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #FFFAF3;
-  }
+`;
+
+const CardTitle = styled.div`
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+`;
+
+const CardEvent = styled.div`
+  font-size: 0.8rem;
 `;
 
 const timelineData = [
   {
     year: '2007',
-    event: 'Company founded with a vision to transform travel technology.'
+    title: 'Founding',
+    event: 'Inspired by their own adventures, a team of travelers set out to raise the bar for what travel can be.'
   },
   {
     year: '2008',
-    event: 'First major partnership established, marking the beginning of our journey.'
+    title: 'First Booking',
+    event: 'Our very first traveler checks in! 2 nights in Santa Barbara marks the start of something big.'
   },
   {
     year: '2013',
-    event: 'Expanded into new markets and launched innovative travel solutions.'
+    title: '1 Million Bookings',
+    event: 'Celebrating a major milestone.'
   },
   {
     year: '2015',
-    event: 'Reached significant milestone with 1 million travelers served.'
+    title: '5 Million Bookings',
+    event: 'Gaining momentum with 5 million bookings and growing demand.'
   },
   {
     year: '2019',
-    event: 'Launched revolutionary platform that redefined travel planning.'
+    title: 'A New Milestone',
+    event: 'Reaching new heights in travel with 10 million bookings.'
   },
   {
     year: '2023',
-    event: 'Achieved global presence with operations in 50+ countries.'
+    title: 'Travelpass Brand Launch',
+    event: 'Explore, Plan, Book your best trip yet with Travelpass.'
   },
   {
-    year: '2024',
-    event: 'Introduced AI-powered features for personalized travel experiences.'
+    year: '2023',
+    title: 'Nitecrawler Brand Launch',
+    event: 'Book last-minute with exclusive member perks with our newest brand, Nitecrawler.'
   },
   {
     year: '2025',
-    event: 'Continuing to innovate and shape the future of travel technology.'
+    title: '20 Million Bookings (And Counting)',
+    event: 'Unlocking what\'s next in the future of travel with more than 20 million bookings.'
   }
 ];
 
@@ -161,27 +170,29 @@ const Timeline: React.FC = () => {
   };
 
   return (
-    <TimelineSection>
-      <Title>Timeline</Title>
-      <TimelineContainer>
-        <TimelineLine />
-        <DotsContainer>
-          {timelineData.map((item, index) => (
-            <div key={index} style={{ position: 'relative' }}>
-              <YearLabel>{item.year}</YearLabel>
-              <Dot 
-                isActive={activeIndex === index}
-                onClick={() => handleDotClick(index)}
-                aria-label={`Timeline event ${item.year}`}
-              />
-            </div>
-          ))}
-        </DotsContainer>
-        <CardContainer isVisible={activeIndex !== null}>
-          {activeIndex !== null && timelineData[activeIndex].event}
-        </CardContainer>
-      </TimelineContainer>
-    </TimelineSection>
+    <TimelineContainer>
+      <TimelineLine />
+      <DotsContainer>
+        {timelineData.map((item, index) => (
+          <div key={index} style={{ position: 'relative' }}>
+            <YearLabel>{item.year}</YearLabel>
+            <Dot 
+              isActive={activeIndex === index}
+              onClick={() => handleDotClick(index)}
+              aria-label={`Timeline event ${item.year}`}
+            />
+          </div>
+        ))}
+      </DotsContainer>
+      <CardContainer isVisible={activeIndex !== null}>
+        {activeIndex !== null && (
+          <>
+            <CardTitle>{timelineData[activeIndex].title}</CardTitle>
+            <CardEvent>{timelineData[activeIndex].event}</CardEvent>
+          </>
+        )}
+      </CardContainer>
+    </TimelineContainer>
   );
 };
 

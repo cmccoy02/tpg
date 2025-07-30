@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+/* Temporary borders to visualize sections - delete later
+section {
+  border: 3px dotted orange !important;
+  box-sizing: border-box;
+}
+*/
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
