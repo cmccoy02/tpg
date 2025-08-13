@@ -148,25 +148,34 @@ const Contact: React.FC = () => {
         <BackgroundImage />
         <Overlay />
         <HeroContent>
-          <HeroTitle>Travel With Us</HeroTitle>
+          <HeroTitle>Contact Travelpass Group</HeroTitle>
         </HeroContent>
       </HeroSection>
       <ContactSection>
         <ContactContainer>
-          <SectionTitle>CONTACT US</SectionTitle>
+          
           <ContactInfo>
+            
             <ContactBlock>
-              <ContactLabel>TRAVELER SUPPORT</ContactLabel>
-              <ContactLink href="tel:833-301-0990">833-301-0990</ContactLink>
-            </ContactBlock>
-            <ContactBlock>
-              <ContactLabel>ADDRESS</ContactLabel>
+              <ContactLabel>Office Address</ContactLabel>
               <ContactText>Travelpass Group office:</ContactText>
               <ContactText>4700 W Daybreak Pkwy</ContactText>
               <ContactText>STE 100 N</ContactText>
               <ContactText>South Jordan, Utah 84009</ContactText>
-              <ContactLink href="tel:801-562-4555">801-562-4555</ContactLink>
             </ContactBlock>
+            <ContactBlock>
+              <ContactLabel>Contact Us</ContactLabel>
+              <ContactText>801-562-4555</ContactText>
+              <ContactText>contact@travelpassgroup.com</ContactText>
+            </ContactBlock>
+            <ContactBlock>
+              <ContactLabel>Newsroom</ContactLabel>
+              <ContactText>If you are a media professional with questions, please reach out:</ContactText>
+              <ContactText>Travelpass Group Public Relations</ContactText>
+              <ContactText>news@travelpassgroup.com</ContactText>
+
+            </ContactBlock>
+            
           </ContactInfo>
         </ContactContainer>
       </ContactSection>

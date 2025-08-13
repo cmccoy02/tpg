@@ -63,7 +63,7 @@ const CTAButton = styled.a`
   justify-content: center;
   
   &:hover {
-    background-color: #e04a68;
+    background-color: #5a3bb8;
   }
 `;
 

@@ -7,7 +7,7 @@ import RDCard from '../Cards/RDCard';
 
 const BrandsSection = styled.section`
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100%;
   background-color: #011111;
   color: white;
@@ -15,7 +15,7 @@ const BrandsSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem 2rem;
+  padding: 2rem 2rem 1rem 2rem;
 `;
 
 const Title = styled.h2`
@@ -53,6 +53,8 @@ const LogoGrid = styled.div`
   width: 100%;
   
   @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: 2rem;
   }
   
@@ -79,6 +81,14 @@ const Logo = styled.img`
   
   &.travelpass {
     filter: none;
+  }
+  
+  @media (max-width: 768px) {
+    max-width: 80%;
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 70%;
   }
 `;
 

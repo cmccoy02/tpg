@@ -15,7 +15,7 @@ const Home: React.FC = () => {
       <Brands />
       <Stats />
       <Story />
-      <Cards />
+      
       <Footer />
     </>
   );

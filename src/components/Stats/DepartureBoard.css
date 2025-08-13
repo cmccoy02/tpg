@@ -81,6 +81,7 @@
     font-family: var(--board-font);
     font-weight: var(--board-font-weight);
     font-style: var(--board-font-style);
+    font-size: 1rem;
 }
 
 .departure-board .row {
@@ -163,4 +164,49 @@
     position: relative;
     transform: scaleY(1);
     transition: transform linear;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .departure-board {
+        font-size: 1.2rem;
+        padding: 0.4em;
+        border-radius: 0.25em;
+    }
+    
+    .departure-board .letter {
+        margin: 0 0.08em;
+    }
+    
+    .departure-board .row {
+        margin-bottom: 0.18em;
+    }
+}
+
+@media (max-width: 480px) {
+    .departure-board {
+        font-size: 1.1rem;
+        padding: 0.45em;
+        border-radius: 0.3em;
+    }
+    
+    .departure-board .letter {
+        margin: 0 0.06em;
+    }
+    
+    .departure-board .row {
+        margin-bottom: 0.15em;
+    }
+}
+
+@media (max-width: 360px) {
+    .departure-board {
+        font-size: 1rem;
+        padding: 0.5em;
+        border-radius: 0.35em;
+    }
+    
+    .departure-board .letter {
+        margin: 0 0.05em;
+    }
 }

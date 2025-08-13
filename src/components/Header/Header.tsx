@@ -74,6 +74,14 @@ const HamburgerLine = styled.div<{ isOpen: boolean }>`
   @media (max-width: 768px) {
     width: 20px;
     height: 2px;
+    
+    &:nth-child(1) {
+      transform: ${props => props.isOpen ? 'rotate(45deg) translate(4px, 4px)' : 'none'};
+    }
+    
+    &:nth-child(3) {
+      transform: ${props => props.isOpen ? 'rotate(-45deg) translate(4px, -4px)' : 'none'};
+    }
   }
 `;
 
@@ -186,7 +194,7 @@ const Header: React.FC = () => {
             <DropdownContainer>
               <DropdownTitle>Brands</DropdownTitle>
               <DropdownItems>
-                <DropdownItem href="https://nitecrawler.com/" target="_blank" rel="noopener noreferrer" brandColor="#F65375">Nitecrawler</DropdownItem>
+                <DropdownItem href="https://nitecrawler.com/" target="_blank" rel="noopener noreferrer" brandColor="#734CE7">Nitecrawler</DropdownItem>
                 <DropdownItem href="https://travelpass.com/" target="_blank" rel="noopener noreferrer" brandColor="#66D210">Travelpass</DropdownItem>
                 <DropdownItem href="https://reservationdesk.com/" target="_blank" rel="noopener noreferrer" brandColor="#00BBD7">Reservation Desk</DropdownItem>
                 <DropdownItem href="https://reservationcounter.com/" target="_blank" rel="noopener noreferrer" brandColor="#FDA416">Reservation Counter</DropdownItem>

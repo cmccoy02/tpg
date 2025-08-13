@@ -8,11 +8,12 @@ interface Metric {
 
 interface DepartureBoardProps {
     metrics: Metric[];
+    startAnimation: boolean;
 }
 
 const LETTERS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.$+";
 
-const DepartureBoard: React.FC<DepartureBoardProps> = ({ metrics }) => {
+const DepartureBoard: React.FC<DepartureBoardProps> = ({ metrics, startAnimation }) => {
     const boardRef = useRef<HTMLDivElement>(null);
     const boardInstanceRef = useRef<FlipBoard | null>(null);
 
@@ -24,7 +25,7 @@ const DepartureBoard: React.FC<DepartureBoardProps> = ({ metrics }) => {
     };
 
     useEffect(() => {
-        if (boardRef.current && !boardInstanceRef.current) {
+        if (boardRef.current && startAnimation && !boardInstanceRef.current) {
             // Calculate the maximum width needed for any row
             const maxWidth = Math.max(...metrics.map(metric => 
                 metric.label.length + metric.value.length + 2 // +2 for padding between label and value
@@ -35,6 +36,9 @@ const DepartureBoard: React.FC<DepartureBoardProps> = ({ metrics }) => {
                 rowCount: metrics.length,
                 letterCount: maxWidth
             });
+            
+            // Expose the board instance on the DOM element for external access
+            (boardRef.current as any).__boardInstance = boardInstanceRef.current;
             
             const displayValues = metrics.map(metric => {
                 const label = metric.label;
@@ -51,11 +55,12 @@ const DepartureBoard: React.FC<DepartureBoardProps> = ({ metrics }) => {
                 // Clear any existing content
                 if (boardRef.current) {
                     boardRef.current.innerHTML = '';
+                    delete (boardRef.current as any).__boardInstance;
                 }
                 boardInstanceRef.current = null;
             }
         };
-    }, [metrics]);
+    }, [metrics, startAnimation]);
 
     return (
         <div className="departure-board" ref={boardRef} />
@@ -108,7 +113,7 @@ class FlipBoard {
                 setTimeout(() => {
                     const letterValue = rowValue.charAt(i) || ' ';
                     letter.setValue(letterValue);
-                }, 2000 * r + 25 * i + Math.random() * 400);
+                }, 1000 * r + 12.5 * i + Math.random() * 200);
             });
         });
     }
@@ -127,7 +132,7 @@ class Letter {
     private interval: number | null;
     private stopAt: number | null;
 
-    static DROP_TIME = 100;
+    static DROP_TIME = 50;
 
     constructor() {
         this.element = document.createElement('span');

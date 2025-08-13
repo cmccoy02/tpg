@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const TimelineSection = styled.section`
@@ -45,6 +45,16 @@ const TimelineLine = styled.div`
   height: 5px;
   background-color: #FFFAF3;
   z-index: 1;
+  
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 3px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 95%;
+    height: 2px;
+  }
 `;
 
 const DotsContainer = styled.div`
@@ -54,6 +64,14 @@ const DotsContainer = styled.div`
   width: 100%;
   max-width: 560px; /* 7 gaps * 60px + 8 dots * 25px */
   margin-bottom: 2rem;
+  
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 95%;
+  }
 `;
 //needs to be centered and adjusted to be above the dots
 const YearLabel = styled.div`
@@ -67,6 +85,16 @@ const YearLabel = styled.div`
   transform: translateX(-50%);
   white-space: nowrap; // Prevents text wrapping
   text-align: center;
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    top: -30px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    top: -25px;
+  }
 `;
 
 const Dot = styled.button<{ isActive: boolean }>`
@@ -82,6 +110,16 @@ const Dot = styled.button<{ isActive: boolean }>`
   
   &:hover {
     transform: scale(1.2);
+  }
+  
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 16px;
+    height: 16px;
   }
 `;
 //Card that pops up when a dot is clicked
@@ -164,13 +202,41 @@ const timelineData = [
 
 const Timeline: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Auto-activate the first dot (2007) when timeline comes into view
+            setActiveIndex(0);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the timeline is visible
+        rootMargin: '0px 0px -100px 0px' // Trigger slightly before fully in view
+      }
+    );
+
+    if (timelineRef.current) {
+      observer.observe(timelineRef.current);
+    }
+
+    return () => {
+      if (timelineRef.current) {
+        observer.unobserve(timelineRef.current);
+      }
+    };
+  }, []);
 
   const handleDotClick = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
-    <TimelineContainer>
+    <TimelineContainer ref={timelineRef}>
       <TimelineLine />
       <DotsContainer>
         {timelineData.map((item, index) => (

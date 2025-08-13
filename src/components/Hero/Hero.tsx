@@ -81,12 +81,14 @@ const ContentRectangle = styled.div`
   border-radius: 8px;
   
   @media (max-width: 768px) {
+    left: 50%;
+    transform: translateX(-50%);
     width: 90%;
-    height: auto;
-    min-height: 200px;
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
+    max-width: 500px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 95%;
     padding: 1.5rem;
   }
 `;
@@ -100,6 +102,7 @@ const ContentHeading = styled.h2`
   
   @media (max-width: 768px) {
     font-size: 1.5rem;
+    text-align: center;
   }
 `;
 
@@ -113,6 +116,7 @@ const ContentText = styled.p`
   
   @media (max-width: 768px) {
     font-size: 0.9rem;
+    text-align: center;
   }
 `;
 
@@ -145,6 +149,7 @@ const AboutButton = styled.a`
     width: 100px;
     height: 35px;
     font-size: 0.8rem;
+    align-self: center;
   }
 `;
 

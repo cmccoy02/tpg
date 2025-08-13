@@ -2,18 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  width: 100%;
-  background: #011111;
-  color: white;
+  background-color: #011111;
+  color: #FFFAF3;
+  padding: 3rem 2rem;
   display: flex;
-  align-items: flex-start;
   justify-content: flex-start;
-  padding: 2rem 3rem;
-  box-sizing: border-box;
-  @media (max-width: 900px) {
+  align-items: flex-start;
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem;
+    text-align: center;
+    gap: 2rem;
   }
 `;
 
@@ -21,7 +22,7 @@ const Logo = styled.img`
   height: 60px;
   width: auto;
   margin-right: 2.5rem;
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     margin-right: 0;
     margin-bottom: 1.5rem;
   }
@@ -31,11 +32,11 @@ const FooterSections = styled.div`
   display: flex;
   flex-direction: row;
   gap: 4rem;
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     gap: 2rem;
     width: 100%;
-    align-items: flex-start;
+    align-items: center;
   }
 `;
 
@@ -43,6 +44,10 @@ const Section = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  
+  @media (max-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const SectionTitle = styled.div`
@@ -56,6 +61,10 @@ const BrandLinks = styled.div`
   flex-direction: column;
   gap: 0.1rem;
   align-items: flex-start;
+  
+  @media (max-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const BrandLink = styled.a<{ hovercolor: string }>`
@@ -70,6 +79,10 @@ const BrandLink = styled.a<{ hovercolor: string }>`
     color: ${props => props.hovercolor};
     text-decoration: underline;
   }
+  
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const LinkedInLogo = styled.img`
@@ -80,9 +93,7 @@ const LinkedInLogo = styled.img`
   cursor: pointer;
   filter: brightness(0) invert(1);
   transition: filter 0.2s;
-  &:hover {
-    filter: drop-shadow(0 0 0 #0077B5) ;
-  }
+  
 `;
 
 const ContactLink = styled.a`
@@ -98,6 +109,10 @@ const ContactLink = styled.a`
     color: #66D210;
     text-decoration: underline;
   }
+  
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const Footer: React.FC = () => {
@@ -109,7 +124,7 @@ const Footer: React.FC = () => {
           <SectionTitle>Brands</SectionTitle>
           <BrandLinks>
             <BrandLink href="https://travelpass.com/" target="_blank" rel="noopener noreferrer" hovercolor="#66D210">Travelpass</BrandLink>
-            <BrandLink href="https://www.nitecrawler.com/" target="_blank" rel="noopener noreferrer" hovercolor="#F65375">Nitecrawler</BrandLink>
+            <BrandLink href="https://www.nitecrawler.com/" target="_blank" rel="noopener noreferrer" hovercolor="#734CE7">Nitecrawler</BrandLink>
             <BrandLink href="https://www.reservationcounter.com/" target="_blank" rel="noopener noreferrer" hovercolor="#FDA416">Reservation Counter</BrandLink>
             <BrandLink href="https://www.reservationdesk.com/" target="_blank" rel="noopener noreferrer" hovercolor="#00BBD7">Reservation Desk</BrandLink>
           </BrandLinks>
