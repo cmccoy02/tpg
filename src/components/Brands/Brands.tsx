@@ -79,7 +79,8 @@ const Logo = styled.img`
   height: auto;
   filter: brightness(0) invert(1); /* Makes SVGs white */
   
-  &.travelpass {
+  &.travelpass,
+  &.rd {
     filter: none;
   }
   
@@ -148,7 +149,7 @@ const Brands: React.FC = () => {
           <Logo src="/assets/logos/RC_Logo.svg" alt="RC" />
         </LogoContainer>
         <LogoContainer onClick={() => handleOpen('rd')} aria-label="RD">
-          <Logo src="/assets/logos/RD_Logo.svg" alt="RD" />
+          <Logo src="/assets/logos/rd/horizontal/RD_RGB_Horizontal_White.svg" alt="RD" className="rd" />
         </LogoContainer>
       </LogoGrid>
       {openCard && (
