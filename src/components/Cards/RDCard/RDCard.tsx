@@ -71,7 +71,7 @@ const RDCard: React.FC = () => {
   return (
     <Card>
       <Content>
-        <Logo src="/assets/logos/rd_card_logo.png" alt="RD Logo" />
+        <Logo src="/assets/logos/rd/horizontal/RD_RGB_Horizontal_FullColor.svg" alt="RD Logo" />
         <Description>
         Confidently book your next hotel with Reservation Desk, a leading online travel agency with one of the widest hotel selections, competitive rates, and 24/7 support you can count on.
         </Description>
